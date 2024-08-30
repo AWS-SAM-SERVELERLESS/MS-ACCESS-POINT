@@ -1,0 +1,73 @@
+version = 0.1
+
+# Configuración por defecto (default)
+[default]
+[default.global.parameters]
+stack_name = "access-ponit"
+
+[default.build.parameters]
+cached = true
+parallel = true
+
+[default.validate.parameters]
+lint = true
+
+[default.deploy.parameters]
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+resolve_s3 = true
+s3_prefix = "access-ponit"
+region = "us-east-1"
+parameter_overrides = "stage=\"LOCAL\" tableName=\"localTable\""
+image_repositories = []
+
+[default.package.parameters]
+resolve_s3 = true
+
+[default.sync.parameters]
+watch = true
+
+[default.local_start_api.parameters]
+warm_containers = "EAGER"
+
+[default.local_start_lambda.parameters]
+warm_containers = "EAGER"
+
+
+##########################################
+###  Configuración para el stage 'dev' ###
+##########################################
+[dev]
+[dev.deploy.parameters]
+stack_name = "access-ponit-dev"
+resolve_s3 = true
+s3_prefix = "access-ponit-bucket-DEV"
+capabilities = "CAPABILITY_IAM"
+region = "us-east-1"
+parameter_overrides = "stage=\"DEV\""
+
+
+##########################################
+### Configuración para el stage 'QA' ####
+##########################################
+[qa]
+[QA.deploy.parameters]
+stack_name = "access-ponit-QA"
+resolve_s3 = true
+s3_prefix = "access-ponit-bucket-QA"
+capabilities = "CAPABILITY_IAM"
+region = "us-east-1"
+parameter_overrides = "stage=\"QA\" tableName=\"QATable\""
+
+
+##########################################
+### Configuración para el stage 'prod' ###
+##########################################
+[prod]
+[prod.deploy.parameters]
+stack_name = "access-ponit-prod"
+resolve_s3 = true
+s3_prefix = "access-ponit-bucket-PROD"
+capabilities = "CAPABILITY_IAM"
+region = "us-east-1"
+parameter_overrides = "stage=\"PROD\" tableName=\"prodTable\""
