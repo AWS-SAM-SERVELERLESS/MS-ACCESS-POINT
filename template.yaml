@@ -35,6 +35,10 @@ Resources:
     Properties:
       FunctionName: !Sub "access-ponit-${stage}"
       CodeUri: src/controllers
+      Tracing: Active
+      AutoPublishAlias: live # Alias que apunta a la última versión publicada
+      DeploymentPreference:
+        Type: AllAtOnce # Estrategia de despliegue (opcional)
       Environment:
         Variables:
           stage: !Ref stage
